@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Knob demo</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+        <script src="js/jquery.knob.js"></script>
+        <script>
+            $(function($) {
+
+                $(".knob").knob({
+                    change : function (value) {
+                        //console.log("change : " + value);
+                    },
+                    release : function (value) {
+                        //console.log(this.$.attr('value'));
+                        console.log("release : " + value);
+                    },
+                    cancel : function () {
+                        console.log("cancel : ", this);
+                    },
+                    draw : function () {
+
+                        // "tron" case
+                        if(this.$.data('skin') == 'tron') {
+
+                            var a = this.angle(this.cv)  // Angle
+                                , sa = this.startAngle          // Previous start angle
+                                , sat = this.startAngle         // Start angle
+                                , ea                            // Previous end angle
+                                , eat = sat + a                 // End angle
+                                , r = 1;
+
+                            this.g.lineWidth = this.lineWidth;
+
+                            this.o.cursor
+                                && (sat = eat - 0.3)
+                                && (eat = eat + 0.3);
+
+                            if (this.o.displayPrevious) {
+                                ea = this.startAngle + this.angle(this.v);
+                                this.o.cursor
+                                    && (sa = ea - 0.3)
+                                    && (ea = ea + 0.3);
+                                this.g.beginPath();
+                                this.g.strokeStyle = this.pColor;
+                                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+                                this.g.stroke();
+                            }
+
+                            this.g.beginPath();
+                            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+                            this.g.stroke();
+
+                            this.g.lineWidth = 2;
+                            this.g.beginPath();
+                            this.g.strokeStyle = this.o.fgColor;
+                            this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                            this.g.stroke();
+
+                            return false;
+                        }
+                    }
+                });
+
+                // Example of infinite knob, iPod click wheel
+                var v, up=0,down=0,i=0
+                    ,$idir = $("div.idir")
+                    ,$ival = $("div.ival")
+                    ,incr = function() { i++; $idir.show().html("+").fadeOut(); $ival.html(i); }
+                    ,decr = function() { i--; $idir.show().html("-").fadeOut(); $ival.html(i); };
+                $("input.infinite").knob(
+                                    {
+                                    min : 0
+                                    , max : 20
+                                    , stopper : false
+                                    , change : function () {
+                                                    if(v > this.cv){
+                                                        if(up){
+                                                            decr();
+                                                            up=0;
+                                                        }else{up=1;down=0;}
+                                                    } else {
+                                                        if(v < this.cv){
+                                                            if(down){
+                                                                incr();
+                                                                down=0;
+                                                            }else{down=1;up=0;}
+                                                        }
+                                                    }
+                                                    v = this.cv;
+                                                }
+                                    });
+            });
+        </script>
+        <style>
+            body{
+              padding: 0;
+              margin: 0px 50px;
+              font-family: monospace, sans-serif;
+              font-weight: 300;
+              text-rendering: optimizelegibility;
+              background:#272822;
+              color: #f8f8f2;
+              font-size: 12px;
+            }
+            p{font-size: 30px; line-height: 30px}
+            div.demo{text-align: center; width: 280px; float: left}
+            div.demo > p{font-size: 20px}
+            div.small_block {
+                width: 10%; margin-bottom: 20px; display:inline-block
+            }
+            div.small_block input{ padding-top: 10px; }
+            div.middle_block {
+                margin-bottom: 20px; display:inline-block
+            }
+
+            e {color: #75715e}
+        </style>
+    </head>
+    <body>
+        <div class="demo" style="width:100%">
+
+            <div class="small_block">
+                pko_pr_cmspub_dv<br/><br/>
+                <input class="knob" data-fgColor="#ec0303" data-width="80%" value="0" readonly id="pko_pr_cmspub_df">
+            </div>
+            <div class="small_block">
+                pko_pr_cmsf_dv<br/><br/>
+                <input class="knob" data-fgColor="#ec0303" data-width="80%" value="0" readonly id="pko_pr_cmsf_df">
+            </div>
+            <div class="small_block">
+                pko_pr_web1_dv<br/><br/>
+                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web1_df">
+            </div>
+            <div class="small_block">
+                pko_pr_web2_dv<br/><br/>
+                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web2_df">
+            </div>
+            <div class="small_block">
+                pko_pr_web3_dv<br/><br/>
+                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web3_df">
+            </div>
+            <div class="small_block">
+                pko_pr_web4_dv<br/><br/>
+                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web4_df">
+            </div>
+            <div class="demo middle_block" style="color:#EEE;height:420px">
+                QA_CMSF <e>/var/www | / | /home/cmsfront_k2/downloads</e>
+                <div style="position:relative;width:350px;margin:auto">
+                    <div style="position:absolute;left:10px;top:10px">
+                        <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_cmsf_sdd1">
+                    </div>
+                    <div style="position:absolute;left:60px;top:60px">
+                        <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_cmsf_sda1">
+                    </div>
+                    <div style="position:absolute;left:110px;top:110px">
+                        <input class="knob second" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3" id="pko_qa_cmsf_sda3">
+                    </div>
+                </div>
+            </div>
+            <div class="demo middle_block" style="color:#EEE;height:420px;">
+                QA_CMSPUB <e>/var/www | / </e>
+                <div style="position:relative;width:350px;margin:auto">
+                    <div style="position:absolute;left:10px;top:10px">
+                        <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_cmspub_sdb1">
+                    </div>
+                    <div style="position:absolute;left:60px;top:60px">
+                        <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_cmspub_sda1">
+                    </div>
+           <!--          <div style="position:absolute;left:110px;top:110px">
+                        <input class="knob second" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3" id="pko_qa_cmsf_sda3">
+                    </div> -->
+                </div>
+            </div>
+            <div class="demo middle_block" style="color:#EEE;height:420px;">
+                QA_APP <e>/var/www | / </e>
+                <div style="position:relative;width:350px;margin:auto">
+                    <div style="position:absolute;left:10px;top:10px">
+                        <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_app_sda1">
+                    </div>
+                    <div style="position:absolute;left:60px;top:60px">
+                        <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_app_sdb1">
+                    </div>
+           <!--          <div style="position:absolute;left:110px;top:110px">
+                        <input class="knob second" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3" id="pko_qa_cmsf_sda3">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </body>
+<script>
+(function($) {
+var url = "http://bartek:8080/?callback=?",
+    ajaxCall = function() {
+        $.ajax({
+           type: 'GET',
+            url: url,
+            async: false,
+            jsonpCallback: 'jsonCallback',
+            contentType: "application/json",
+            dataType: 'jsonp',
+            success: function(json) {
+                console.log(json);
+                $.each(json, function( key, value ) {
+                    $('#' + key).val(value).trigger('change');
+                });
+
+                 setTimeout(function() {
+                  ajaxCall();
+                }, 2000);
+            },
+            error: function(e) {
+               console.log(e.message);
+            }
+        });
+    }
+ajaxCall();
+})(jQuery);
+</script>
+
+</html>
