@@ -17,6 +17,13 @@ def get_disk_space(server, device='/dev/sda1'):
     return space
 
 
+def last_modification_time(server, myfile):
+    mtime = Popen(
+        shlex.split("ssh %s 'find %s -maxdepth 0 -printf \"%%Tm/%%Td %%TH:%%TM\"'" % (server, myfile)), stdout=PIPE
+    ).stdout.read().strip()
+    return mtime
+
+
 @route('/')
 def index():
     r = {}
@@ -31,12 +38,25 @@ def index():
 
     r['pko_qa_app_sda1'] = get_disk_space('pko_qa_app', '/dev/sda1')
     r['pko_qa_app_sdb1'] = get_disk_space('pko_qa_app', '/dev/sdb1')
+
     r['pko_pr_cmspub_df'] = get_disk_space('pko_pr_cmspub')
     r['pko_pr_cmsf_df'] = get_disk_space('pko_pr_cmsf')
     r['pko_pr_web1_df'] = get_disk_space('pko_pr_web1')
     r['pko_pr_web2_df'] = get_disk_space('pko_pr_web2')
     r['pko_pr_web3_df'] = get_disk_space('pko_pr_web3')
     r['pko_pr_web4_df'] = get_disk_space('pko_pr_web4')
+
+    return jsonp(request, r)
+
+
+@route('/mtimes')
+def mtimes():
+    r = {}
+    if (request.query.callback):
+        response.content_type = "application/javascript"
+
+    r['last_qa_publish_log'] = last_modification_time('pko_qa_cmspub', '/var/www/pkobp-portal/log/cmd_publish.log')
+    r['last_pr_publish_log'] = last_modification_time('pko_pr_cmspub', '/var/www/pkobp-portal/log/cmd_publish.log')
 
     return jsonp(request, r)
 
