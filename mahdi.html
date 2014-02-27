@@ -117,6 +117,7 @@
             }
 
             e {color: #75715e}
+            .text_floater {font-size:24px;}
         </style>
     </head>
     <body>
@@ -186,7 +187,10 @@
                 </div>
             </div>
         </div>
-
+        <div class="text_floater">
+            Last QA publish: <span id="last_qa_publish_log">?</span><br/>
+            Last PR publish: <span id="last_pr_publish_log">?</span>
+        </div>
     </body>
 <script>
 (function($) {
@@ -208,6 +212,34 @@ var url = "http://bartek:8080/?callback=?",
                  setTimeout(function() {
                   ajaxCall();
                 }, 10000);
+            },
+            error: function(e) {
+               console.log(e.message);
+            }
+        });
+    }
+ajaxCall();
+})(jQuery);
+
+(function($) {
+var url = "http://bartek:8080/mtimes?callback=?",
+    ajaxCall = function() {
+        $.ajax({
+           type: 'GET',
+            url: url,
+            async: false,
+            jsonpCallback: 'jsonCallback',
+            contentType: "application/json",
+            dataType: 'jsonp',
+            success: function(json) {
+                console.log(json);
+                $.each(json, function( key, value ) {
+                    $('#' + key).html(value);
+                });
+
+                 setTimeout(function() {
+                  ajaxCall();
+                }, 2000);
             },
             error: function(e) {
                console.log(e.message);
