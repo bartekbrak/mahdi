@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>jQuery Knob demo</title>
+        <title>mahdi monitor</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
         <script src="js/jquery.knob.js"></script>
@@ -228,7 +228,7 @@ var url = "http://bartek:8080/mtimes?callback=?",
            type: 'GET',
             url: url,
             async: false,
-            jsonpCallback: 'jsonCallback',
+            jsonpCallback: 'mtimesJsonCallback',
             contentType: "application/json",
             dataType: 'jsonp',
             success: function(json) {
