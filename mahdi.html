@@ -117,19 +117,24 @@
             }
 
             e {color: #75715e}
-            .text_floater {font-size:24px;}
+            .text_floater {position: fixed;left:30px;top:550px;font-size:24px;}
         </style>
     </head>
     <body>
         <div class="demo" style="width:100%">
-
-            <div class="small_block">
-                pko_pr_cmspub_dv<br/><br/>
-                <input class="knob" data-fgColor="#ec0303" data-width="80%" value="0" readonly id="pko_pr_cmspub_df">
+            <div style="position: fixed; left:10px;top:330px">PR_CMSF <e>/var/www | / </e></div>
+            <div class="small_block" style="position:fixed;left:20px;top:350px;">
+                <input class="knob" data-fgColor="#ec0303" data-width="80px" value="0" readonly id="pko_pr_cmsf_sdb1" data-displayInput=false>
             </div>
-            <div class="small_block">
-                pko_pr_cmsf_dv<br/><br/>
-                <input class="knob" data-fgColor="#ec0303" data-width="80%" value="0" readonly id="pko_pr_cmsf_df">
+            <div class="small_block" style="position:fixed;left:20px;top:375px;padding:10px">
+                <input class="knob" data-fgColor="#03ec03" data-width="45px" value="0" readonly id="pko_pr_cmsf_sda1" data-displayInput=false data-thickness=".3">
+            </div>
+            <div style="position: fixed; left:210px;top:350px">PR_CMSPUB <e>/var/www | / </e></div>
+            <div class="small_block" style="position:fixed;left:220px;top:370px;">
+                <input class="knob" data-fgColor="#ec0303" data-width="80px" value="0" readonly id="pko_pr_cmspub_mpath1" data-displayInput=false>
+            </div>
+            <div class="small_block" style="position:fixed;left:220px;top:395px;padding:10px">
+                <input class="knob" data-fgColor="#03ec03" data-width="45px" value="0" readonly id="pko_pr_cmspub_sda1" data-displayInput=false data-thickness=".3">
             </div>
             <div class="small_block">
                 pko_pr_web1_dv<br/><br/>
