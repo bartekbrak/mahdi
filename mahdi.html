@@ -2,9 +2,9 @@
 <html>
     <head>
         <title>mahdi monitor</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-        <script src="js/jquery.knob.js"></script>
+        <script src="jquery.knob.js"></script>
         <script>
             $(function($) {
 
@@ -95,9 +95,8 @@
             });
         </script>
         <style>
-            body{
+            body {
               padding: 0;
-              margin: 0px 50px;
               font-family: monospace, sans-serif;
               font-weight: 300;
               text-rendering: optimizelegibility;
@@ -105,153 +104,123 @@
               color: #f8f8f2;
               font-size: 12px;
             }
-            p{font-size: 30px; line-height: 30px}
-            div.demo{text-align: center; width: 280px; float: left}
-            div.demo > p{font-size: 20px}
-            div.small_block {
-                width: 10%; margin-bottom: 20px; display:inline-block
-            }
-            div.small_block input{ padding-top: 10px; }
-            div.middle_block {
-                margin-bottom: 20px; display:inline-block
-            }
+            div.fixed {position:fixed; text-align: center}
+            div.block100 { width: 100px; }
+            div.block200 { width:200px;}
+            div.block400 { width:400px;}
 
-            e {color: #75715e}
-            .text_floater {position: fixed;left:30px;top:550px;font-size:24px;}
+            #text_floater {font-size:24px;}
+            description {padding-bottom: 10px; display:block; height: 10px;}
+            description e {color: #75715e}
         </style>
     </head>
     <body>
-        <div class="demo" style="width:100%">
-            <div style="position: fixed; left:10px;top:330px">PR_CMSF <e>/var/www | / </e></div>
-            <div class="small_block" style="position:fixed;left:20px;top:350px;">
-                <input class="knob" data-fgColor="#ec0303" data-width="80px" value="0" readonly id="pko_pr_cmsf_sdb1" data-displayInput=false>
-            </div>
-            <div class="small_block" style="position:fixed;left:20px;top:375px;padding:10px">
-                <input class="knob" data-fgColor="#03ec03" data-width="45px" value="0" readonly id="pko_pr_cmsf_sda1" data-displayInput=false data-thickness=".3">
-            </div>
-            <div style="position: fixed; left:210px;top:350px">PR_CMSPUB <e>/var/www | / </e></div>
-            <div class="small_block" style="position:fixed;left:220px;top:370px;">
-                <input class="knob" data-fgColor="#ec0303" data-width="80px" value="0" readonly id="pko_pr_cmspub_mpath1" data-displayInput=false>
-            </div>
-            <div class="small_block" style="position:fixed;left:220px;top:395px;padding:10px">
-                <input class="knob" data-fgColor="#03ec03" data-width="45px" value="0" readonly id="pko_pr_cmspub_sda1" data-displayInput=false data-thickness=".3">
-            </div>
-            <div class="small_block">
-                pko_pr_web1_dv<br/><br/>
-                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web1_df">
-            </div>
-            <div class="small_block">
-                pko_pr_web2_dv<br/><br/>
-                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web2_df">
-            </div>
-            <div class="small_block">
-                pko_pr_web3_dv<br/><br/>
-                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web3_df">
-            </div>
-            <div class="small_block">
-                pko_pr_web4_dv<br/><br/>
-                <input class="knob" data-fgColor="#ee28ee" data-width="80%" value="0" readonly id="pko_pr_web4_df">
-            </div>
-            <div class="demo middle_block" style="color:#EEE;height:420px">
-                QA_CMSF <e>/var/www | / | /home/cmsfront_k2/downloads</e>
-                <div style="position:relative;width:350px;margin:auto">
-                    <div style="position:absolute;left:10px;top:10px">
-                        <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_cmsf_sdd1">
-                    </div>
-                    <div style="position:absolute;left:60px;top:60px">
-                        <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_cmsf_sda1">
-                    </div>
-                    <div style="position:absolute;left:110px;top:110px">
-                        <input class="knob second" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3" id="pko_qa_cmsf_sda3">
-                    </div>
-                </div>
-            </div>
-            <div class="demo middle_block" style="color:#EEE;height:420px;">
-                QA_CMSPUB <e>/var/www | / </e>
-                <div style="position:relative;width:350px;margin:auto">
-                    <div style="position:absolute;left:10px;top:10px">
-                        <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_cmspub_sdb1">
-                    </div>
-                    <div style="position:absolute;left:60px;top:60px">
-                        <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_cmspub_sda1">
-                    </div>
-           <!--          <div style="position:absolute;left:110px;top:110px">
-                        <input class="knob second" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3" id="pko_qa_cmsf_sda3">
-                    </div> -->
-                </div>
-            </div>
-            <div class="demo middle_block" style="color:#EEE;height:420px;">
-                QA_APP <e>/var/www | / </e>
-                <div style="position:relative;width:350px;margin:auto">
-                    <div style="position:absolute;left:10px;top:10px">
-                        <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_app_sda1">
-                    </div>
-                    <div style="position:absolute;left:60px;top:60px">
-                        <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_app_sdb1">
-                    </div>
-                </div>
-            </div>
+        <div class="fixed block200" style="left:420px;top:10px;">
+            <description>PR_CMSF <e>/var/www | / </e></description>
+            <input class="knob" data-fgColor="#ec0303" data-width="80%" value="0" id="pko_pr_cmsf_sdb1" data-displayInput=false>
         </div>
-        <div class="text_floater">
+        <div class="fixed block200" style="left:420px;top:60px;">
+            <input class="knob" data-fgColor="#03ec03" data-width="50%" value="0" id="pko_pr_cmsf_sda1" data-displayInput=false data-thickness=".3">
+        </div>
+        <div class="fixed block200" style="left:630px;top:10px;">
+            <description>PR_CMSPUB <e>/var/www | / </e></description>
+            <input class="knob" data-fgColor="#ec0303" data-width="80%" value="0" id="pko_pr_cmspub_mpath1" data-displayInput=false>
+        </div>
+        <div class="fixed block200" style="left:630px;top:60px">
+            <input class="knob" data-fgColor="#03ec03" data-width="50%" value="0" id="pko_pr_cmspub_sda1" data-displayInput=false data-thickness=".3">
+        </div>
+
+        <div class="fixed block100" style="left:840px; top:10px">
+            <description>pko_pr_web1_dv</description>
+            <input class="knob" data-fgColor="#28ee5e" data-width="80%" value="0" id="pko_pr_web1_df">
+        </div>
+        <div class="fixed block100" style="left:840px; top:130px">
+            <description>pko_pr_web2_dv</description>
+            <input class="knob" data-fgColor="#28ee5e" data-width="80%" value="0" id="pko_pr_web2_df">
+        </div>
+        <div class="fixed block100" style="left:840px; top:250px">
+            <description>pko_pr_web3_dv</description>
+            <input class="knob" data-fgColor="#28ee5e" data-width="80%" value="0" id="pko_pr_web3_df">
+        </div>
+        <div class="fixed block100" style="left:840px; top:370px">
+            <description>pko_pr_web4_dv</description>
+            <input class="knob" data-fgColor="#28ee5e" data-width="80%" value="0" id="pko_pr_web4_df">
+        </div>
+
+        <div class="fixed block400" style="left:0px;top:10px">
+            <description>QA_CMSF <e>/var/www | / | /home/cmsfront_k2/downloads</e></description>
+            <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_cmsf_sdd1">
+        </div>
+        <div class="fixed block400" style="left:0px;top:80px">
+            <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_cmsf_sda1">
+        </div>
+        <div class="fixed block400" style="left:0px;top:130px">
+            <input class="knob second" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3" id="pko_qa_cmsf_sda3">
+        </div>
+
+        <div class="fixed block400" style="left:0px;top:410px">
+            <description>QA_CMSPUB <e>/var/www | / </e></e></description>
+            <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_cmspub_sdb1">
+        </div>
+        <div class="fixed block400" style="left:0px;top:480px">
+            <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_cmspub_sda1">
+        </div>
+
+        <div class="fixed block400" style="left:250px;top:240px">
+            <description>QA_APP <e>/var/www | / </e></e></e></description>
+            <input class="knob" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3" id="pko_qa_app_sda1">
+        </div>
+        <div class="fixed block400" style="left:250px;top:310px">
+            <input class="knob" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45" id="pko_qa_app_sdb1">
+        </div>
+
+        <div class="fixed" id="text_floater" style="left:10px;top:770px">
             Last QA publish: <span id="last_qa_publish_log">?</span><br/>
             Last PR publish: <span id="last_pr_publish_log">?</span>
         </div>
     </body>
+<script src="config.js"></script>
 <script>
-(function($) {
-var url = "http://bartek:8080/?callback=?",
-    ajaxCall = function() {
-        $.ajax({
-           type: 'GET',
-            url: url,
-            async: false,
-            jsonpCallback: 'jsonCallback',
-            contentType: "application/json",
-            dataType: 'jsonp',
-            success: function(json) {
-                console.log(json);
-                $.each(json, function( key, value ) {
-                    $('#' + key).val(value).trigger('change');
-                });
+// config.js has some vars
 
-                 setTimeout(function() {
-                  ajaxCall();
-                }, 600000);
-            },
-            error: function(e) {
-               console.log(e.message);
-            }
-        });
-    }
-ajaxCall();
-})(jQuery);
+// (function($) {
+// var disk_usage_ajax = function() {
+//         $.ajax({
+//            type: 'GET',
+//             url: server + "/disk_usage?callback=?",
+//             async: false,
+//             jsonpCallback: 'diskUsageJsonCallback',
+//             contentType: "application/json",
+//             dataType: 'jsonp'
+//         })
+//         .done(function(json, textStatus, jqXHR) {
+//             $.each(json, function( key, value ) {
+//                 $('#' + key).val(value).trigger('change');
+//             });
+//             setTimeout(function() { disk_usage_ajax(); }, mtimes_refresh_rate);
+//         });
+//     }
+// disk_usage_ajax();
+// })(jQuery);
 
 (function($) {
-var url = "http://bartek:8080/mtimes?callback=?",
-    ajaxCall = function() {
+var mtimes_ajax = function() {
         $.ajax({
            type: 'GET',
-            url: url,
+            url: server + "/mtimes?callback=?",
             async: false,
             jsonpCallback: 'mtimesJsonCallback',
             contentType: "application/json",
-            dataType: 'jsonp',
-            success: function(json) {
-                console.log(json);
-                $.each(json, function( key, value ) {
-                    $('#' + key).html(value);
-                });
-
-                 setTimeout(function() {
-                  ajaxCall();
-                }, 60000);
-            },
-            error: function(e) {
-               console.log(e.message);
-            }
+            dataType: 'jsonp'
+        })
+        .done(function(json, textStatus, jqXHR) {
+            $.each(json, function( key, value ) {
+                $('#' + key).html(value);
+            });
+            setTimeout(function() { mtimes_ajax(); }, mtimes_refresh_rate);
         });
     }
-ajaxCall();
+mtimes_ajax();
 })(jQuery);
 </script>
 
