@@ -183,25 +183,25 @@
 <script>
 // config.js has some vars
 
-// (function($) {
-// var disk_usage_ajax = function() {
-//         $.ajax({
-//            type: 'GET',
-//             url: server + "/disk_usage?callback=?",
-//             async: false,
-//             jsonpCallback: 'diskUsageJsonCallback',
-//             contentType: "application/json",
-//             dataType: 'jsonp'
-//         })
-//         .done(function(json, textStatus, jqXHR) {
-//             $.each(json, function( key, value ) {
-//                 $('#' + key).val(value).trigger('change');
-//             });
-//             setTimeout(function() { disk_usage_ajax(); }, mtimes_refresh_rate);
-//         });
-//     }
-// disk_usage_ajax();
-// })(jQuery);
+(function($) {
+var disk_usage_ajax = function() {
+        $.ajax({
+           type: 'GET',
+            url: server + "/disk_usage?callback=?",
+            async: false,
+            jsonpCallback: 'diskUsageJsonCallback',
+            contentType: "application/json",
+            dataType: 'jsonp'
+        })
+        .done(function(json, textStatus, jqXHR) {
+            $.each(json, function( key, value ) {
+                $('#' + key).val(value).trigger('change');
+            });
+            setTimeout(function() { disk_usage_ajax(); }, mtimes_refresh_rate);
+        });
+    }
+disk_usage_ajax();
+})(jQuery);
 
 (function($) {
 var mtimes_ajax = function() {
