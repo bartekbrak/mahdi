@@ -33,7 +33,7 @@ upstream mahdi {
 
 server {
     listen 80;
-    server_name mahdi.localhost;
+    server_name mahdi.backend;
     access_log      /var/log/nginx/mahdi.access.log;
     error_log       /var/log/nginx/mahdi.error.log;
 
@@ -57,12 +57,20 @@ service nginx restart
 ```
 
 * run server.py anywhere and nginx will proxy the traffic there.
-* add `127.0.0.0 mahdi.localhost` to /etc/hosts
-* visit [http://mahdi.localhost](http://mahdi.localhost) and README.html will be served to you
+* add `127.0.0.0 mahdi.backend` to /etc/hosts
+* visit [http://mahdi.backend](http://mahdi.backend) and README.html will be served to you
 
-## Frontend
+### Frontend
 
 Only `mahdi.html` and `js/jquery.knob.js` are needed to run the frontend. They
 can be either copied to the display machine or the whole repo can be cloned.
 Configure the backend address in config.js and then simply open the page in
 fullscreen mode.
+
+There's more than one way to skin a cat and I'm sure soon enough someone will
+start complaing about the interface html design philosphy. That's fine. You
+can change it but trust me, `position: fixed` makes things a lot easier.
+
+## Varia
+
+* Don't try to rename server.py, to bottle.py.
