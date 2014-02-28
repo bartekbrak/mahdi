@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0019)file:///tmp/48.html -->
+<!-- saved from url=(0020)file:///tmp/127.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
 body{
@@ -150,7 +150,7 @@ upstream mahdi {
 
 server {
     listen 80;
-    server_name mahdi.localhost;
+    server_name mahdi.backend;
     access_log      /var/log/nginx/mahdi.access.log;
     error_log       /var/log/nginx/mahdi.error.log;
 
@@ -175,11 +175,18 @@ service nginx restart
 
 <ul>
 <li>run server.py anywhere and nginx will proxy the traffic there.</li>
-<li>add <code>127.0.0.0 mahdi.localhost</code> to /etc/hosts</li>
-<li>visit <a href="http://mahdi.localhost/">http://mahdi.localhost</a> and README.html will be served to you</li>
+<li>add <code>127.0.0.0 mahdi.backend</code> to /etc/hosts</li>
+<li>visit <a href="http://mahdi.backend/">http://mahdi.backend</a> and README.html will be served to you</li>
 </ul>
-<h2 id="frontend">Frontend</h2>
+<h3 id="frontend">Frontend</h3>
 <p>Only <code>mahdi.html</code> and <code>js/jquery.knob.js</code> are needed to run the frontend. They
 can be either copied to the display machine or the whole repo can be cloned.
 Configure the backend address in config.js and then simply open the page in
-fullscreen mode.</p></body></html>
+fullscreen mode.</p>
+<p>There's more than one way to skin a cat and I'm sure soon enough someone will
+start complaing about the interface html design philosphy. That's fine. You
+can change it but trust me, <code>position: fixed</code> makes things a lot easier.</p>
+<h2 id="varia">Varia</h2>
+<ul>
+<li>Don't try to rename server.py, to bottle.py.</li>
+</ul></body></html>
